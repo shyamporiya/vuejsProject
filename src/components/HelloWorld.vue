@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h1>{{ index }}</h1>
+   
+    <h1>{{ userName }}</h1>
+    <h1>{{ userEmail }}</h1>
     <button className="clickMe" @click="click_me">Click Me</button>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
@@ -39,16 +40,47 @@ export default {
     msg: String
   },
   data(){
-    return{
-    index:"Msg Print From index variable!"
-    }
+    return {
+      userName: "Shyam Poriya",
+      userEmail: "shyamporiya9595@gmail.com",
+      userId: "",
+      count: 0,
+      obj: [
+        { state: "Gujarat", city: "Ahmedabad" },
+        { state: "Maharashtra", city: "Pune" },
+        { state: "Rajasthan", city: "Jaipur" },
+      ],
+      dataList: [],
+      filterData: [],
+      vIf: true,
+    };
   },
-  methods:{
-    click_me(){
-      console.log('from click me function');
-    }
-  }
-}
+  methods: {
+    click_me() {
+      console.log("this", this);
+      this.userId = "shyam_poriya";
+      this.count = 220;
+    },
+   /* onAlert() {
+      alert("hello world!!");
+    },
+    onShowData() {
+      const newArray = this.obj.map((elm, index, arr) => {
+        return elm.name;
+      });
+      this.dataList = newArray;
+      console.log("newArray", newArray);
+    },
+    onFilterData() {
+      const newFilterlist = this.obj.filter((item, index, arr) => {
+        return item.age > 22;
+      }); 
+      this.filterData = newFilterlist;
+      console.log("newFilterlist", newFilterlist);
+    },
+    */
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
