@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <h1>{{ index }}</h1>
+    <button className="clickMe" @click="click_me">Click Me</button>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -35,6 +37,16 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data(){
+    return{
+    index:"Msg Print From index variable!"
+    }
+  },
+  methods:{
+    click_me(){
+      console.log('from click me function');
+    }
   }
 }
 </script>
@@ -54,5 +66,9 @@ li {
 }
 a {
   color: #42b983;
+}
+.clickMe:hover{
+  background-color: blue;
+  border:2px solid red;
 }
 </style>
