@@ -43,6 +43,7 @@ export default {
     passwordBtn() {
       const password = this.password;
       console.log("From Password : " + password);
+      console.log("test: " + password);
       alert("Your Password is : " + password);
     },
   },
