@@ -13,6 +13,9 @@
   </div>
 
   <h1>V-Show Example</h1>
+  <hr />
+  <p v-for="index in 10">v-for:{{ index }}</p>
+  <p v-for="(elm, index) in 10" :key="index">{{ index }}-{{ elm }}</p>
 </template>
 
 <script>
