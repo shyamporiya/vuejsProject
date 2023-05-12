@@ -1,47 +1,66 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div className="parent-div">
+    <h1>VueJs Training Session</h1>
+    <h2>Component</h2>
+    <h2>{{ username }}</h2>
+    <h2>Email: {{ email }}</h2>
+    <button className="click_me" @click="userNameBtn()">Show Username</button>
+    <button className="click_me" @click="emailBtn()">Show Email</button>
+    <button className="click_me" @click="databaseBtn()">Show Database</button>
+    <button className="click_me" @click="passwordBtn()">Show Password</button>
+  </div>
 </template>
 
+<script>
+export default {
+  name: "App",
+  components: {},
+  props: {},
+  data() {
+    return {
+      username: "shyamporiya@123",
+      email: "info@vuejs.com ",
+      database: "myFirstProject",
+      password: ".;dl_kfid",
+    };
+  },
+  methods: {
+    userNameBtn() {
+      const name = this.username;
+      console.log("From username :", name);
+      alert("UserName is : " + name);
+    },
+    emailBtn() {
+      const email = this.email;
+      console.log("Your Email Is : " + email);
+      alert("Your Email is : " + email);
+    },
+    databaseBtn() {
+      const databaseName = this.database;
+      console.log("From Database : " + databaseName);
+      alert("Your Database is : " + databaseName);
+    },
+    passwordBtn() {
+      const password = this.password;
+      console.log("From Password : " + password);
+      alert("Your Password is : " + password);
+    },
+  },
+};
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
+.click_me {
+  color: black;
+  background-color: rgb(200, 217, 87);
+  border: 4px solid rgb(211, 111, 111);
+  font-size: medium;
+  font-weight: 300;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.click_me:hover {
+  color: white;
+  background-color: red;
+  border: 4px solid goldenrod;
+  font-size: 25px;
 }
 </style>
