@@ -8,11 +8,11 @@
     <!-- <p>List{{ list }}</p> -->
     <span>List Of (Using fetch details):{{ listingData }}</span>
     <button className="click_me" @click="userNameBtn()">Show Username</button>
-    <button className="click_me" @click="emailBtn()">Show Email</button>
-    <button className="click_me" @click="databaseBtn()">Show Database</button>
-    <button className="click_me" @click="passwordBtn()">Show Password</button>
-    <button className="click_me" @click="fetchBtn()">Fetch Address</button>
-    <button className="click_me" @click="fetchListBtn()">Fetch List</button>
+    <button className="" @click="emailBtn()">Show Email</button>
+    <button className="" @click="databaseBtn()">Show Database</button>
+    <button className="" @click="passwordBtn()">Show Password</button>
+    <button className="" @click="fetchBtn()">Fetch Address</button>
+    <button className="" @click="fetchListBtn()">Fetch List</button>
   </div>
 </template>
 

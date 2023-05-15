@@ -1,42 +1,20 @@
 <template>
-  <h1>V-if condition</h1>
-
-  <button @click="show_div">click to show if condition div</button>
-  <div v-if="ifexample">
-    <p>This is if condition div</p>
-  </div>
-  <div v-else-if="isName">
-    <p>This is else if condition div</p>
-  </div>
-  <div v-else>
-    <p>this is else div</p>
-  </div>
-
-  <h1>V-Show Example</h1>
-  <hr />
-  <p v-for="index in 10">v-for:{{ index }}</p>
-  <p v-for="(elm, index) in 10" :key="index">{{ index }}-{{ elm }}</p>
+  <Header />
+  <Content />
+  <Footer />
 </template>
 
 <script>
-import Header from "./components/HeaderTitle.vue";
-import structure_div from "./components/Structure.vue";
+import Header from "./components/body/Header.vue";
+import Content from "./components/body/Content.vue";
+import Footer from "./components/body/Footer.vue";
 
 export default {
   name: "App",
-  components: {},
-  props: {},
+  components: { Header, Content, Footer },
   data() {
-    return {
-      ifexample: false,
-      isName: true,
-      // showExample: true,
-    };
+    return {};
   },
-  methods: {
-    show_div() {
-      this.ifexample = true;
-    },
-  },
+  methods: {},
 };
 </script>
