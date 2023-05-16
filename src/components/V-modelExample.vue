@@ -1,4 +1,4 @@
-template>
+<template>
   <div>
     <h1>Welcome To Vue Js</h1>
     <h3>Example of Increment Or Decrement</h3>
