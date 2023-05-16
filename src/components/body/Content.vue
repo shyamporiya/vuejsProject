@@ -10,7 +10,7 @@
       v-model="countVal"
     />
     <button class="btn btn-success" @click="addVal()">Add Value</button>
-    <hr />
+    <br />
     <button class="increment-btn btn btn-primary" @click="inc_btn()">
       <i style="inc-btn">+</i>
     </button>
@@ -20,6 +20,15 @@
       <i class="dec-btn">-</i>
     </button>
     <hr />
+    <h3>Example of v-model</h3>
+    <h2 aria-placeholder="v-model example">{{ model_Val }}</h2>
+    <input
+      class="model-val"
+      type="text"
+      placeholder="Enter value v-model"
+      v-model="model_Val"
+      data-title="Enter Value To Show Model"
+    />
   </div>
 </template>
 <script>
@@ -30,6 +39,7 @@ export default {
     return {
       count: "",
       countVal: "",
+      model_Val: "",
     };
   },
   methods: {
@@ -66,6 +76,8 @@ export default {
 .increment-btn,
 .decrement-btn {
   border: 2px solid rgb(7, 10, 0);
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .value-text {
   margin-right: 25px;
@@ -74,6 +86,12 @@ export default {
   padding: 2px 27px 8px 28px;
   border: 3px solid black;
   font-weight: 700;
+}
+i {
+  font-weight: bold;
+}
+hr {
+  border: 3px solid #e91818 !important;
 }
 </style>
 >
