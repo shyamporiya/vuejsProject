@@ -17,17 +17,17 @@
       <div class="adult">
         <span class="adultName">Adult</span>
         <div class="add_div">
-          <button @click="adultDecBtn">-</button>
-          <span>{{ adultRoomCount }}</span>
-          <button @click="adultIncBtn">+</button>
+          <button style="margin-left: 10px" @click="adultDecBtn">-</button>
+          <span style="margin-left: 5px">{{ adultRoomCount }}</span>
+          <button style="margin-left: 5px" @click="adultIncBtn">+</button>
         </div>
       </div>
       <div class="add_child_div">
         <span class="childName">Child</span>
         <div class="sub_child_div">
-          <button @click="childDecBtn">-</button>
-          <span>{{ childRoomCount }}</span>
-          <button @click="childIncBtn">+</button>
+          <button @click="childDecBtn" style="margin-left: 5px">-</button>
+          <span style="margin-left: 5px">{{ childRoomCount }}</span>
+          <button style="margin-left: 5px" @click="childIncBtn">+</button>
         </div>
       </div>
     </div>
@@ -86,13 +86,13 @@
             />
           </td>
           <td>
-            <!-- <input
+            <input
               style="width: 60px"
               type="text"
               placeholder="Total"
               v-model="sum"
-            /> -->
-            <h5>{{ sum }}</h5>
+              disabled
+            />
           </td>
           <td><button @click="submitBtn()">Submit</button></td>
         </tr>
@@ -118,7 +118,7 @@
           <td>{{ categoryNameGet }}</td>
           <td>{{ priceGet }}</td>
           <td>{{ discountGet }}</td>
-          <td>{{ totalGet }}</td>
+          <td>{{ sumTotal }}</td>
         </tr>
       </table>
     </div>
@@ -145,6 +145,7 @@ export default {
       total: "",
       totalGet: "",
       sum: "",
+      sumTotal: "",
       productData: [
         { product: "Test 1 ", category: "Main" },
         { product: "test 2", category: "cat test" },
@@ -156,13 +157,17 @@ export default {
   },
   methods: {
     adultDecBtn() {
-      this.adultRoomCount--;
+      if (this.adultRoomCount !== 0) {
+        this.adultRoomCount--;
+      }
     },
     adultIncBtn() {
       this.adultRoomCount++;
     },
     childDecBtn() {
-      this.childRoomCount--;
+      if (this.childRoomCount !== 0) {
+        this.childRoomCount--;
+      }
     },
     childIncBtn() {
       this.childRoomCount++;
@@ -178,6 +183,12 @@ export default {
       this.colums++;
       console.log("click here to add colums");
     },
+    discountOnchange() {
+      var pricecal = Number(document.getElementById("price").value);
+      var dis_cal = Number(document.getElementById("discount").value) / 100;
+      var sum_value = pricecal - pricecal * dis_cal;
+      this.sum = sum_value;
+    },
     submitBtn() {
       console.log("Submit Clicked");
       var listData = this.productData.map((index, val, arr) => {
@@ -189,34 +200,8 @@ export default {
       this.priceGet = this.price;
       this.discountGet = this.discount;
       this.totalGet = this.total;
+      this.sumTotal = this.sum;
       console.log(this.productNameGet);
-    },
-    priceOnchange() {
-      console.log("hello");
-      // var pricecal = this.price;
-      // var dis_cal = this.discount;
-      // var sum = "hello";
-      // console.log(sum);
-
-      var pricecal = document.getElementById("price").value;
-      var dis_cal = document.getElementById("discount").value;
-
-      // Add them together and display
-      var sum = parseInt(pricecal) + parseInt(dis_cal);
-    },
-    discountOnchange() {
-      console.log("hello");
-      // var pricecal = this.price;
-      // var dis_cal = this.discount;
-      // var sum = "hello";
-      // console.log(sum);
-
-      var pricecal = document.getElementById("price").value;
-      var dis_cal = document.getElementById("discount").value;
-
-      // Add them together and display
-      var sum_value = parseInt(pricecal) + parseInt(dis_cal);
-      this.sum = sum_value;
     },
   },
 };
@@ -235,6 +220,7 @@ button {
   background-color: aliceblue;
 }
 .room-name {
+  padding: 0px 7px 5px 10px;
   margin-left: 100px;
   font-size: 22px;
   font-weight: 700;
@@ -242,6 +228,7 @@ button {
   border: 2px solid black;
 }
 .adult {
+  padding: 3px 5px 3px 5px;
   margin-left: 5px;
   /* border: 2px solid black; */
   margin-right: 22px;
@@ -262,13 +249,14 @@ button {
   border: 2px solid black;
 }
 .childName {
+  padding: 3px 5px 0px 5px;
   font-size: 22px;
   font-weight: 700;
   font-family: fangsong;
   border: 2px solid black;
 }
 .add_another_room {
-  margin-left: 205px;
+  margin-left: 85px;
   margin-bottom: 4px;
 }
 .main-section {
