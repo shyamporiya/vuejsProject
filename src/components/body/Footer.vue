@@ -55,7 +55,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  background: linear-gradient(45deg, #5f2626, transparent);
+  background: linear-gradient(45deg, #5f2626, #a57c7c);
   color: black;
   font-size: small;
   font-weight: 400;
