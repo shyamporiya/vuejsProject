@@ -12,30 +12,117 @@
         Remove room
       </button>
     </div>
-    <div v-for="index in roomCount">
-      {{ index }}
-      <div class="table_room">
-        <span class="room-name">Room {{ index }}</span>
-        <div class="adult">
-          <span class="adultName">Adult</span>
-          <div class="add_div">
-            <button @click="adultDecBtn">-</button>
-            <span>{{ adultRoomCount }}</span>
-            <button @click="adultIncBtn">+</button>
-          </div>
+    <div class="table_room" v-for="(elem, index) in roomCount" :key="index">
+      <span class="room-name">Room {{ index }}</span>
+      <div class="adult">
+        <span class="adultName">Adult</span>
+        <div class="add_div">
+          <button @click="adultDecBtn">-</button>
+          <span>{{ adultRoomCount }}</span>
+          <button @click="adultIncBtn">+</button>
         </div>
-        <div class="add_child_div">
-          <span class="childName">Child</span>
-          <div class="sub_child_div">
-            <button @click="childDecBtn">-</button>
-            <span>{{ childRoomCount }}</span>
-            <button @click="childIncBtn">+</button>
-          </div>
+      </div>
+      <div class="add_child_div">
+        <span class="childName">Child</span>
+        <div class="sub_child_div">
+          <button @click="childDecBtn">-</button>
+          <span>{{ childRoomCount }}</span>
+          <button @click="childIncBtn">+</button>
         </div>
       </div>
     </div>
+    <hr />
   </section>
-  <section></section>
+  <section>
+    <div class="parent-div">
+      <button class="addMorecol" @click="addColums()">Add More</button>
+      <table style="width: 30%">
+        <tr>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Discount</th>
+          <th>Total</th>
+        </tr>
+        <tr v-for="(col, index) in colums" :key="index">
+          <td>
+            <input
+              style="width: 135px"
+              type="text"
+              placeholder="Product Name"
+              v-model="productName"
+            />
+          </td>
+          <td>
+            <select
+              style="border: 2px solid black; width: 100px"
+              v-model="categoryName"
+            >
+              <option value="">Select</option>
+              <option value="average">Average</option>
+              <option value="good">Good</option>
+              <option value="bad">Bad</option>
+              <option value="nonuse">Non-use</option>
+            </select>
+          </td>
+          <td>
+            <input
+              style="width: 70px"
+              type="text"
+              placeholder="price"
+              v-model="price"
+              @input="priceOnchange()"
+              id="price"
+            />
+          </td>
+          <td>
+            <input
+              style="width: 100px"
+              type="text"
+              placeholder="Discount %"
+              v-model="discount"
+              id="discount"
+              @input="discountOnchange()"
+            />
+          </td>
+          <td>
+            <!-- <input
+              style="width: 60px"
+              type="text"
+              placeholder="Total"
+              v-model="sum"
+            /> -->
+            <h5>{{ sum }}</h5>
+          </td>
+          <td><button @click="submitBtn()">Submit</button></td>
+        </tr>
+      </table>
+    </div>
+  </section>
+  <hr />
+  <section>
+    <h5>Record Of Table</h5>
+    <div class="parent-div">
+      <table style="width: 30%">
+        <tr>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Discount</th>
+          <th>Total</th>
+        </tr>
+        <tr>
+          <td>
+            {{ productNameGet }}
+          </td>
+          <td>{{ categoryNameGet }}</td>
+          <td>{{ priceGet }}</td>
+          <td>{{ discountGet }}</td>
+          <td>{{ totalGet }}</td>
+        </tr>
+      </table>
+    </div>
+  </section>
 </template>
 <script>
 export default {
@@ -45,7 +132,26 @@ export default {
     return {
       adultRoomCount: 1,
       childRoomCount: 1,
-      roomCount: "",
+      roomCount: 1,
+      colums: 1,
+      productName: "",
+      productNameGet: "",
+      categoryName: "",
+      categoryNameGet: "",
+      price: "",
+      priceGet: "",
+      discount: "",
+      discountGet: "",
+      total: "",
+      totalGet: "",
+      sum: "",
+      productData: [
+        { product: "Test 1 ", category: "Main" },
+        { product: "test 2", category: "cat test" },
+        { product: "productName", category: "test1" },
+        { product: "productName", category: "test1" },
+        { product: "productName", category: "test1" },
+      ],
     };
   },
   methods: {
@@ -63,9 +169,54 @@ export default {
     },
     add_another_room() {
       this.roomCount++;
+      console.log(this.roomCount);
     },
     remove_another_room() {
       this.roomCount--;
+    },
+    addColums() {
+      this.colums++;
+      console.log("click here to add colums");
+    },
+    submitBtn() {
+      console.log("Submit Clicked");
+      var listData = this.productData.map((index, val, arr) => {
+        return index.product;
+        console.log("index" + index);
+      });
+      this.productNameGet = this.productName;
+      this.categoryNameGet = this.categoryName;
+      this.priceGet = this.price;
+      this.discountGet = this.discount;
+      this.totalGet = this.total;
+      console.log(this.productNameGet);
+    },
+    priceOnchange() {
+      console.log("hello");
+      // var pricecal = this.price;
+      // var dis_cal = this.discount;
+      // var sum = "hello";
+      // console.log(sum);
+
+      var pricecal = document.getElementById("price").value;
+      var dis_cal = document.getElementById("discount").value;
+
+      // Add them together and display
+      var sum = parseInt(pricecal) + parseInt(dis_cal);
+    },
+    discountOnchange() {
+      console.log("hello");
+      // var pricecal = this.price;
+      // var dis_cal = this.discount;
+      // var sum = "hello";
+      // console.log(sum);
+
+      var pricecal = document.getElementById("price").value;
+      var dis_cal = document.getElementById("discount").value;
+
+      // Add them together and display
+      var sum_value = parseInt(pricecal) + parseInt(dis_cal);
+      this.sum = sum_value;
     },
   },
 };
@@ -122,5 +273,14 @@ button {
 }
 .main-section {
   margin-left: 10px;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  width: fit-content;
+}
+.addMorecol {
+  margin-left: 465px;
 }
 </style>
