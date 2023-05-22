@@ -63,13 +63,14 @@
               style="width: 135px"
               type="text"
               placeholder="Product Name"
-              v-model="productName"
+              id="product_name"
             />
           </td>
+
           <td>
             <select
               style="border: 2px solid black; width: 100px"
-              v-model="categoryName"
+              id="category_name"
             >
               <option value="">Select</option>
               <option value="average">Average</option>
@@ -83,9 +84,7 @@
               style="width: 70px"
               type="text"
               placeholder="price"
-              v-model="price"
-              @input="priceOnchange()"
-              id="price"
+              id="price_val"
             />
           </td>
           <td>
@@ -93,8 +92,7 @@
               style="width: 100px"
               type="text"
               placeholder="Discount %"
-              v-model="discount"
-              id="discount"
+              id="dis_val"
               @input="discountOnchange()"
             />
           </td>
@@ -103,8 +101,8 @@
               style="width: 60px"
               type="text"
               placeholder="Total"
-              v-model="sum"
               disabled
+              id="total_val"
             />
           </td>
           <td><button @click="removeBtn()">Remove</button></td>
@@ -127,14 +125,22 @@
           <th>Discount</th>
           <th>Total</th>
         </tr>
-        <tr>
+        <tr v-for="(col, index) in getList" :key="index">
           <td>
-            <input v-model="testing" readonly="true" />
+            <input v-model="col.productName" readonly="true" />
           </td>
-          <td>{{ categoryNameGet }}</td>
-          <td>{{ priceGet }}</td>
-          <td>{{ discountGet }}</td>
-          <td>{{ sumTotal }}</td>
+          <td>
+            <input v-model="col.categoryName" readonly="true" />
+          </td>
+          <td>
+            <input v-model="col.price" readonly="true" />
+          </td>
+          <td>
+            <input v-model="col.discount" readonly="true" />
+          </td>
+          <td>
+            <input v-model="col.total" readonly="true" />
+          </td>
         </tr>
       </table>
     </div>
@@ -147,7 +153,7 @@ export default {
   components: {},
   data() {
     return {
-      testing: "hello",
+      testing: "hello465465546",
       rooms: [
         {
           //room_No: 1,
@@ -164,15 +170,7 @@ export default {
           total: "",
         },
       ],
-      getList: [
-        {
-          productName: "test1",
-          categoryName: "test2",
-          price: "test3",
-          discount: "4%",
-          total: "5000",
-        },
-      ],
+      getList: [],
     };
   },
   methods: {
@@ -212,11 +210,11 @@ export default {
     },
     addColums() {
       this.productList.push({
-        productName: "",
-        categoryName: "",
-        price: "",
-        discount: "",
-        total: "",
+        productName: null,
+        categoryName: null,
+        price: null,
+        discount: null,
+        total: null,
       });
     },
     removeBtn() {
@@ -232,7 +230,38 @@ export default {
     },
     submitBtn() {
       console.log("hell");
+      // var listData = this.productData.map((index, val, arr) => {
+      //   return index.product;
+      //   console.log("index" + index);
+      //if (this.productList.length > 1) {
+      this.productList.forEach((value, index) => {
+        //arr.push(value);
+        console.log(value);
+        console.log(index);
+
+        this.getList.push({
+          productName: document.getElementById("product_name").value,
+          categoryName: document.getElementById("category_name").value,
+          price: document.getElementById("price_val").value,
+          discount: document.getElementById("dis_val").value,
+          total: document.getElementById("total_val").value,
+        });
+      });
+
+      /*foreach(productList as key => value){
+          this.getList.push({
+            productName: "qwe",
+            categoryName: "qwe",
+            price: "zczxxz",
+            discount: "asd",
+            total: "asd",
+          });
+        }*/
+      //}
     },
+  },
+  product_name_0() {
+    console.log("hello");
   },
 };
 </script>
