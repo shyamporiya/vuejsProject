@@ -129,7 +129,7 @@
         </tr>
         <tr>
           <td>
-            {{ productNameGet }}
+            <input v-model="testing" readonly="true" />
           </td>
           <td>{{ categoryNameGet }}</td>
           <td>{{ priceGet }}</td>
@@ -147,6 +147,7 @@ export default {
   components: {},
   data() {
     return {
+      testing: "hello",
       rooms: [
         {
           //room_No: 1,
@@ -163,7 +164,15 @@ export default {
           total: "",
         },
       ],
-      getList: [],
+      getList: [
+        {
+          productName: "test1",
+          categoryName: "test2",
+          price: "test3",
+          discount: "4%",
+          total: "5000",
+        },
+      ],
     };
   },
   methods: {
