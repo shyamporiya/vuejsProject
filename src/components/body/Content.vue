@@ -1,12 +1,12 @@
 <template>
-  <section>
+  <!-- <section>
     <div>
       <button class="add_another_room" @click="add_another_room">
         Add room
       </button>
     </div>
-    <!-- start room div -->
-    <div class="table_room" v-for="(elem, index) in rooms" :key="index">
+    
+   <div class="table_room" v-for="(elem, index) in rooms" :key="index">
       <span class="room-name">Room - {{ ++index }}</span>
       <div class="adult">
         <span class="adultName">Adult</span>
@@ -43,9 +43,102 @@
         </button>
       </div>
     </div>
-    <!-- end room div -->
+    
+  </section> -->
+
+  <section>
+    <div class="parent-div">
+      <button class="addMorecol" @click="addColums()">Add More</button>
+      <table style="width: 30%">
+        <tr>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Discount</th>
+          <th>Total</th>
+        </tr>
+        <tr v-for="(col, index) in productList" :key="index">
+          <td>
+            <input
+              style="width: 135px"
+              type="text"
+              placeholder="Product Name"
+              v-model="productName"
+            />
+          </td>
+          <td>
+            <select
+              style="border: 2px solid black; width: 100px"
+              v-model="categoryName"
+            >
+              <option value="">Select</option>
+              <option value="average">Average</option>
+              <option value="good">Good</option>
+              <option value="bad">Bad</option>
+              <option value="nonuse">Non-use</option>
+            </select>
+          </td>
+          <td>
+            <input
+              style="width: 70px"
+              type="text"
+              placeholder="price"
+              v-model="price"
+              @input="priceOnchange()"
+              id="price"
+            />
+          </td>
+          <td>
+            <input
+              style="width: 100px"
+              type="text"
+              placeholder="Discount %"
+              v-model="discount"
+              id="discount"
+              @input="discountOnchange()"
+            />
+          </td>
+          <td>
+            <input
+              style="width: 60px"
+              type="text"
+              placeholder="Total"
+              v-model="sum"
+              disabled
+            />
+          </td>
+          <td><button @click="removeBtn()">Remove</button></td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <button class="submitEvent" @click="submitBtn()">Submit</button>
+    </div>
   </section>
   <hr />
+  <section>
+    <h5>Record Of Table</h5>
+    <div class="parent-div">
+      <table style="width: 30%">
+        <tr>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Discount</th>
+          <th>Total</th>
+        </tr>
+        <tr>
+          <td>
+            {{ productNameGet }}
+          </td>
+          <td>{{ categoryNameGet }}</td>
+          <td>{{ priceGet }}</td>
+          <td>{{ discountGet }}</td>
+          <td>{{ sumTotal }}</td>
+        </tr>
+      </table>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -61,6 +154,16 @@ export default {
           child_count: 0,
         },
       ],
+      productList: [
+        {
+          productName: "",
+          categoryName: "",
+          price: "",
+          discount: "",
+          total: "",
+        },
+      ],
+      getList: [],
     };
   },
   methods: {
@@ -73,26 +176,14 @@ export default {
       // console.log("add room" + this.roomNo);
     },
     remove_another_room(ele) {
-      let updateStudentList = this.students.filter((el) => el.ele !== ele);
-      this.rooms = updateStudentList;
+      // remove_another_room() {
+      var ele_num = --ele;
+      console.log("room no is:" + ele_num);
+      if (this.rooms.length > 1) {
+        this.rooms.splice(ele_num, 1);
+      }
     },
-    // remove_another_room() {
-    //   // var ele_num = --ele;
-    //   // console.log("ele :" + ele_num);
-    //   const fruits = this.rooms;
-    //   // console.log("fruit array is :" + fruits);
-    //   delete fruits[1];
 
-    //   // console.log("ele no :" + ele_num);
-    //   // this.rooms.splice(ele_num, 1);
-    //   // console.log(this.rooms);
-    //   // if (this.rooms.length > 1) {
-    //   //   delete this.rooms[2];
-    //   // } else {
-    //   //   console.log("Else work");
-    //   // }
-    //   // console.log("add room" + this.roomNo);
-    // },
     incBtnAdult(obj) {
       console.log("click+");
       obj.adult_count++;
@@ -109,6 +200,29 @@ export default {
       if (obj.child_count !== 0) {
         obj.child_count--;
       }
+    },
+    addColums() {
+      this.productList.push({
+        productName: "",
+        categoryName: "",
+        price: "",
+        discount: "",
+        total: "",
+      });
+    },
+    removeBtn() {
+      if (this.productList.length > 1) {
+        this.productList.pop({
+          productName: "",
+          categoryName: "",
+          price: "",
+          discount: "",
+          total: "",
+        });
+      }
+    },
+    submitBtn() {
+      console.log("hell");
     },
   },
 };
@@ -152,7 +266,7 @@ td {
 } */
 
 /* this page new css */
-button {
+/* button {
   border: 2px solid black;
   background: burlywood;
 }
@@ -207,5 +321,23 @@ button {
 }
 .remove_room {
   background: #a0e0e3;
+} */
+
+button {
+  border: 2px solid black;
+  background: burlywood;
+}
+.submitEvent {
+  margin-left: 492px;
+  margin-top: 20px;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  width: fit-content;
+}
+.addMorecol {
+  margin-left: 471px;
 }
 </style>

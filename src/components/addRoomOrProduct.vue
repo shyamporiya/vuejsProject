@@ -145,14 +145,8 @@ export default {
       totalGet: "",
       sum: "",
       sumTotal: "",
-      productData: [
-        { product: "Test 1 ", category: "Main" },
-        { product: "test 2", category: "cat test" },
-        { product: "productName", category: "test1" },
-        { product: "productName", category: "test1" },
-        { product: "productName", category: "test1" },
-      ],
-      productItems: [],
+      productData: [],
+      productItems: 1,
     };
   },
   methods: {
@@ -208,7 +202,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 button {
   border: 2px solid black;
   background: burlywood;
@@ -270,6 +264,6 @@ td {
   width: fit-content;
 }
 .addMorecol {
-  margin-left: 465px;
+  margin-left: 471px;
 }
 </style>
