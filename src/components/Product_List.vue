@@ -16,7 +16,6 @@
               style="width: 135px"
               type="text"
               placeholder="Product Name"
-              id="product_name_{{index}}"
               v-model="col.productName"
             />
           </td>
@@ -69,7 +68,7 @@
       </table>
     </div>
     <div>
-      <button class="submitEvent" @click="submitBtn()">Submit</button>
+      <button class="submitEvent" @click="submitBtn(col)">Submit</button>
     </div>
   </section>
   <hr />
@@ -141,14 +140,6 @@ export default {
   components: {},
   data() {
     return {
-      testing: "hello465465546",
-      rooms: [
-        {
-          //room_No: 1,
-          adult_count: 1,
-          child_count: 0,
-        },
-      ],
       productList: [
         {
           productName: "",
@@ -158,18 +149,23 @@ export default {
           total: "",
         },
       ],
-      getList: [
-        {
-          productName: "",
-          categoryName: "",
-          price: "",
-          discount: "",
-          total: "",
-        },
-      ],
+      getList: [],
     };
   },
   methods: {
+    getArray() {
+      console.log("hello this from getaray");
+      let arr_list = this.getList.map((element, index) => {
+        console.log(
+          "index : " +
+            index +
+            "Name : " +
+            element.name +
+            "Age is : " +
+            element.age
+        );
+      });
+    },
     addColums() {
       this.productList.push({
         productName: null,
@@ -201,7 +197,18 @@ export default {
       console.log("total is :", main_total);
       ele.total = main_total;
     },
-    submitBtn() {},
+    submitBtn(ele) {
+      let valArray = this.productList.forEach((element, index) => {
+        console.log(
+          "element is : " +
+            element.productName +
+            "Category name is:" +
+            element.categoryName
+        );
+      });
+      console.log("array is ", valArray);
+      this.getList.push({ valArray });
+    },
   },
 };
 </script>
